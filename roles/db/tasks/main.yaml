@@ -1,9 +1,9 @@
-- name : "Configuring DB Is Started"
-  # hosts : 
-  # vars_prompt :
-  #  - name : rootpass
-  #    prompt : "Please Enter Root Password"
-  #    private : no
+# - name : "Configuring DB Is Started"
+#   # hosts : 
+#   # vars_prompt :
+#   #  - name : rootpass
+#   #    prompt : "Please Enter Root Password"
+#   #    private : no
   tasks :
    - name : "Installing MySql Server"
      ansible.builtin.dnf :
