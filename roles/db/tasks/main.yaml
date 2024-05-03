@@ -4,7 +4,7 @@
 #   #  - name : rootpass
 #   #    prompt : "Please Enter Root Password"
 #   #    private : no
-  tasks :
+  # tasks :
    - name : "Installing MySql Server"
      ansible.builtin.dnf :
       name : "mysql-server"
