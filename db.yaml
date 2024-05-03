@@ -1,5 +1,4 @@
 - name : "Configuring DB Server"
-  hosts : db
   become : yes
   roles :
    - db 
