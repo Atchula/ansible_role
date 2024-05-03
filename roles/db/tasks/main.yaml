@@ -1,0 +1,36 @@
+- name : "Configuring DB Is Started"
+hosts : "DB"
+# vars_prompt :
+#   - name : rootpass
+#     prompt : "Please Enter Root Password"
+#     private : no
+tasks :
+  - name : "Installing MySql Server"
+    ansible.builtin.dnf :
+    name : "mysql-server"
+    state : "latest"
+    
+  - name : " Start And Enable mysqld"
+    ansible.builtin.service:
+    name : "mysqld"
+    state : "started"
+    enabled : "yes"
+
+  - name : "Installing Python Dependencies To Connect MySql 
+            From Ansible"
+    ansible.builtin.pip:
+    name :
+      - PyMySql
+    executable : pip3.9
+
+  - name : "Check Connection with DB"
+    community.mysql.mysql_info:
+    login_user: root
+    login_password: "{{rootpass}}"
+    filter: version
+    ignore_errors : yes
+    register : sqlerror
+
+  - name : "Set Root Password"
+    ansible.builtin.command : "mysql_secure_installation --set-root-pass {{rootpass}}"
+  when : sqlerror.failed is true
