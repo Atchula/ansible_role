@@ -33,4 +33,4 @@ tasks :
 
   - name : "Set Root Password"
     ansible.builtin.command : "mysql_secure_installation --set-root-pass {{rootpass}}"
-  when : sqlerror.failed is true
+    when : sqlerror.failed is true
